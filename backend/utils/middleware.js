@@ -6,7 +6,7 @@ export const validateToken = (req, resp, next) => {
   if (!authToken) {
     sendResponse(resp, 401, 'Invalid Credentials')
   }
-  jwt.verify(authToken, process.env.SECRET_KEY, function (error, user) {
+  jwt.verify(authToken, process.env.SECRET_KEY || "zaigo_task" , function (error, user) {
     if (error) {
       sendResponse(resp, 403, 'Invalid Credentials')
     }
