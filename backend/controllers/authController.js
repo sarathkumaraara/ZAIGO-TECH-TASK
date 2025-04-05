@@ -3,6 +3,7 @@ import { sendResponse } from "../utils/common.js";
 import jwt from 'jsonwebtoken'
 import { createdSuccessfully, fetchedSuccessfully, internalError } from "../utils/responseMessageHelper.js";
 
+const secret_key = process.env.SECRET_KEY
 const auth = new AuthModel()
 const authController = {
 
@@ -22,7 +23,7 @@ const authController = {
       else {
         const token = jwt.sign(
           { email: email, user_id: user._id },
-          process.env.SECRET_KEY,
+          secret_key || "zaigo_task",
           { expiresIn: '1d' }
         )
         const resData = {
@@ -50,7 +51,7 @@ const authController = {
       const email = req.user
       const newToken = jwt.sign(
         { email: email, user_id: req.user_id },
-        process.env.SECRET_KEY,
+        secret_key || "zaigo_task",
         { expiresIn: '1d' }
       )
       const resData = {
