@@ -7,7 +7,7 @@ const authProtectedRoutes = [
   {
     path:"/dashboard",
     component:<Dashboard />,
-    accessRoles: ["user"]
+    accessRoles: ["admin", "user"]
   },
   { path: "*", component: <Navigate to="/login" /> },
 ];
